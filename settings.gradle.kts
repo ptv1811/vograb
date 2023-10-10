@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Word Jet"
+rootProject.name = "Vograb"
 include(":app")

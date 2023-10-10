@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.wordjet"
+    namespace = "com.example.vograb"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.wordjet"
+        applicationId = "com.example.vograb"
         minSdk = 30
         targetSdk = 33
         versionCode = 1
