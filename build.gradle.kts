@@ -9,11 +9,9 @@ buildscript {
     dependencies {
         val version = project.extra
         classpath("com.android.tools.build:gradle:${version["gradleBuildTool"]}")
-//        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:$version.kotlin")
-//        classpath ("com.google.dagger:hilt-android-gradle-plugin:$version.hiltCoreVersion")
-//        classpath ("com.google.ar.sceneform:plugin:$version.sceneFormVersion")
-//        classpath ("com.diffplug.spotless:spotless-plugin-gradle:$version.spotlessGradle")
-//        classpath ("com.google.gms:google-services:$version.gms")
+        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:${version["kotlin"]}")
+        classpath ("com.google.dagger:hilt-android-gradle-plugin:${version["hiltCoreVersion"]}")
+        classpath ("com.diffplug.spotless:spotless-plugin-gradle:${version["spotlessGradle"]}")
     }
 }
 
