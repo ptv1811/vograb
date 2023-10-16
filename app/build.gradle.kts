@@ -1,7 +1,13 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
+
+apply("$rootDir/dependencies.gradle.kts")
+val version = project.extra
 
 android {
     namespace = "com.example.vograb"
@@ -29,14 +35,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
-        compose = true
+        dataBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -49,21 +55,34 @@ android {
 }
 
 dependencies {
+    // Architecture components
+    implementation ("androidx.fragment:fragment-ktx:${version["fragmentVersion"]}")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:${version["lifecycleVersion"]}")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:${version["lifecycleVersion"]}")
+    implementation ("androidx.room:room-runtime:${version["roomVersion"]}")
+    implementation ("androidx.room:room-ktx:${version["roomVersion"]}")
+    implementation ("androidx.navigation:navigation-fragment-ktx:${version["navigationVersion"]}")
+    implementation ("androidx.navigation:navigation-ui-ktx:${version["navigationVersion"]}")
+    implementation ("androidx.appcompat:appcompat:${version["appCompat"]}")
+    kapt ("androidx.room:room-compiler:${version["roomVersion"]}")
+    testImplementation ("androidx.arch.core:core-testing:${version["archCompomentVersion"]}")
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("com.google.android.gms:play-services-wearable:18.1.0")
-    implementation("androidx.percentlayout:percentlayout:1.0.0")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.recyclerview:recyclerview:1.3.1")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.wear.compose:compose-material:1.0.0")
-    implementation("androidx.wear.compose:compose-foundation:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
-    implementation("androidx.activity:activity-compose:1.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    // Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:${version["coroutinesVersion"]}")
+    testImplementation( "org.jetbrains.kotlinx:kotlinx-coroutines-android:${version["coroutinesVersion"]}")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:${version["coroutinesVersion"]}")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:${version["hiltCoreVersion"]}")
+    kapt ("com.google.dagger:hilt-compiler:${version["hiltCoreVersion"]}")
+    kapt ("androidx.hilt:hilt-compiler:${version["hiltCoreVersion"]}")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:${version["hiltCoreVersion"]}")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:${version["hiltCoreVersion"]}")
+
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:${version["retrofitVersion"]}")
+    implementation ("com.squareup.retrofit2:converter-moshi:${version["retrofitVersion"]}")
+
+    // Binding
+    implementation("com.github.skydoves:bindables:${version["bindablesVersion"]}")
 }
