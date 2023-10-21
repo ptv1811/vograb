@@ -80,6 +80,7 @@ dependencies {
     kaptAndroidTest("com.google.dagger:hilt-compiler:${version["hiltCoreVersion"]}")
 
     // Retrofit
+    implementation( "com.github.skydoves:sandwich:${version["sandwichVersion"]}")
     implementation ("com.squareup.retrofit2:retrofit:${version["retrofitVersion"]}")
     implementation ("com.squareup.retrofit2:converter-moshi:${version["retrofitVersion"]}")
 
