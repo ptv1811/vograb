@@ -4,17 +4,18 @@ plugins {
     id("kotlin-parcelize")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
 }
 
 apply("$rootDir/dependencies.gradle.kts")
 val version = project.extra
 
 android {
-    namespace = "com.example.vograb"
+    namespace = "com.guava.vograb"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.vograb"
+        applicationId = "com.guava.vograb"
         minSdk = 30
         targetSdk = 33
         versionCode = 1
@@ -86,4 +87,8 @@ dependencies {
 
     // Binding
     implementation("com.github.skydoves:bindables:${version["bindablesVersion"]}")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:${version["firebaseBom"]}"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
 }
