@@ -17,6 +17,7 @@ mapOf(
         Pair("bindablesVersion", "1.0.9"),
         Pair("appCompat", "1.6.1"),
         Pair("sandwichVersion", "1.2.2"),
+        Pair("firebaseBom", "32.4.0"),
 ).entries.forEach {
         project.extra.set(it.key, it.value)
 }
